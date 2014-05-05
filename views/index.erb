@@ -3,19 +3,20 @@
 	<title>Sudoku Game</title>
 	<link href="/stylesheets/application.css" rel="stylesheet" type="text/css">
 </head>
+
 <body>
-<h1>Life is too short for playing Sudoku</h1>
-	<div id = "flash"> 
-		<%= flash[:notice] %>
-	</div>	
-	<form action="/" method="post">
-	</form>
-	
-	<div class="button2">	
+
+	<h1>Life is too short for playing Sudoku</h1>
+
+	<div id = "flash"> <%= flash[:notice] %></div>	
+
+<form action="/" method="post"></form>
+		
+	<div>
 		<form action="/new game" method="post">
-			<button type = "submit" name="level" value="Easy">Easy</button>
-			<button type = "submit" name="level" value="Medium">Medium</button>
-			<button type = "submit" name="level" value="Hard">Hard</button>
+			<button class = "easy" type = "submit" name="level" value="Easy">Easy</button>
+			<button class = "medium" type = "submit" name="level" value="Medium">Medium</button>
+			<button class = "difficult" type = "submit" name="level" value="Hard">Hard</button>
 		</form>
 	</div>
 
@@ -40,9 +41,13 @@
 				<% end %>
 			</div>
 		<% end %>
-		<button class="button">Check solution</button>
+		<button class="button" name="action" value="check_game">Check solution</button>
+		<button class="button" name="action" value="save_game">Save solution</button>
 		</form>
 	</div>
+
+<a href="/solution"><button class="button">Show solution</button></a>
+<a href="/load_game"><button class="button">Load last saved game</button></a>
 
 
 </body>

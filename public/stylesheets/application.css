@@ -9,14 +9,18 @@ body{
 	background-image: (background.jpg);
 }
 
+#sudoku{
+	font-size: 0;
+}
+
 .box{
   outline: 2px solid black;
 }
 
-
 #flash {
 	margin: 20px;
 }
+
 
 .cell input{
 	font-family: "Comic Sans MS";
@@ -27,15 +31,7 @@ body{
 	height: 45px;
 	border-color: #B8B8B8 ;
 	border-width: 1px;
-	
-	/*outline: black;*/
 }
-
-#sudoku{
-	font-size: 0;
-	text-align: center;
-}
-
 
 .incorrect {
 	background-color: #FFCC66;
@@ -53,10 +49,33 @@ body{
 	margin-top: 30px;
 }
 
-.button2{
+.easy{
+
 	font-family: "Comic Sans MS";
 	font-style: bold;
 	font-size: 18;
 	text-align: center;
 	margin-top: 30px;
 }
+
+.medium{
+
+	font-family: "Comic Sans MS";
+
+	font-style: bold;
+	font-size: 18;
+	text-align: center;
+	margin-top: 30px;
+}
+
+.difficult{
+
+	font-family: "Comic Sans MS";
+	font-style: bold;
+	font-size: 18;
+	text-align: center;
+	margin-top: 30px;
+}
+
+
+

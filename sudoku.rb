@@ -34,11 +34,16 @@ end
 post '/' do
   cells = box_to_row(params['cell'])
   session[:current_solution] = cells.map{|value| value.to_i}.join
-  session[:check_solution] = true 
+	  if params[:action] == "save_game"
+		  session[:save_game] = cells.map{|value| value.to_i}.join
+	  elsif params[:action] == "check_game"
+	  	session[:check_solution] = true	
+	  end
   redirect to("/")
 end
 
 get '/' do
+	session[:save_game] != nil ? session[:current_solution] = session[:save_game] : ""
   session[:cells_to_delete] ||= 4
   prepare_to_check_solution
   generate_new_puzzle_if_necessary
@@ -53,7 +58,7 @@ get '/solution' do
   @puzzle = session[:puzzle]
   @check_solution = session[:check_solution]
   @current_solution = session[:solution]
-  erb:index
+  erb :index
 end
 
 
