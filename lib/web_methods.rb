@@ -50,6 +50,12 @@ def prepare_to_check_solution
   session[:check_solution] = nil
 end
 
+def prepare_to_load_game
+  if session[:current_solution] == nil
+    flash[:notice] = "No saved game. Please try this game."
+  end
+end
+
 helpers do 
  
   def cell_value(value)
@@ -69,6 +75,10 @@ helpers do
     elsif !must_be_guessed
       'value_provided'
     end
+  end
+
+  def read_only(puzzle_value)
+    puzzle_value != "0" ? "readonly" : ""
   end
 
 end

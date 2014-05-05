@@ -36,6 +36,8 @@ post '/' do
   session[:current_solution] = cells.map{|value| value.to_i}.join
 	  if params[:action] == "save_game"
 		  session[:save_game] = cells.map{|value| value.to_i}.join
+      session[:save_solution] = session[:solution]
+      session[:save_puzzle] = session[:puzzle]
 	  elsif params[:action] == "check_game"
 	  	session[:check_solution] = true	
 	  end
@@ -43,7 +45,6 @@ post '/' do
 end
 
 get '/' do
-	session[:save_game] != nil ? session[:current_solution] = session[:save_game] : ""
   session[:cells_to_delete] ||= 4
   prepare_to_check_solution
   generate_new_puzzle_if_necessary
@@ -62,12 +63,16 @@ get '/solution' do
 end
 
 get '/load_game' do
-	session[:current_solution] = session[:save_game]
-  @current_solution = session[:current_solution] 
-  @solution = session[:solution]
-  @puzzle = session[:puzzle]
-	erb :index
+  session[:current_solution] = session[:save_game] 
+  session[:solution] = session[:save_solution]
+  session[:puzzle] = session[:save_puzzle]
+  prepare_to_load_game
+  redirect to("/")
+end
 
+get '/restart' do
+  session[:current_solution] = session[:puzzle]
+  redirect to("/")
 end
 
 
