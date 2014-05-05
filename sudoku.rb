@@ -23,7 +23,7 @@ enable :sessions
 
 
 post '/new game' do
-  session.clear
+  # session.clear
   difficulty = {"Easy" => 4, "Medium" => 5, "Hard" => 6}
   session[:cells_to_delete] = difficulty[params[:level]]
   session[:current_solution] = false
@@ -59,6 +59,15 @@ get '/solution' do
   @check_solution = session[:check_solution]
   @current_solution = session[:solution]
   erb :index
+end
+
+get '/load_game' do
+	session[:current_solution] = session[:save_game]
+  @current_solution = session[:current_solution] 
+  @solution = session[:solution]
+  @puzzle = session[:puzzle]
+	erb :index
+
 end
 
 
